@@ -5,15 +5,18 @@ import org.junit.jupiter.api.Test
 class Kotlin {
 
     @Test()
-    fun main(){
+    fun main() {
         var result = solution("banana")
         println(result);
     }
 
-    fun solution(s: String): List<Int> {
-
-
-        return listOf()
-    }
-
+    /**
+     * 효율성은 별로.
+     */
+    fun solution(s: String): List<Int> =
+            s.withIndex().map {
+                s.slice(0 until it.index)
+                        .lastIndexOf(it.value)
+                        .let { lastIndex -> if (lastIndex >= 0) it.index - lastIndex else -1 }
+            }
 }
